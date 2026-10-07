@@ -42,6 +42,8 @@ class ApiService {
     return UserModel.fromJson(response);
   }
 
+  static Future<UserModel> getCurrentUser() => getMe();
+
   static Future<UserModel> updateProfile({
     String? name,
     String? phone,
@@ -183,6 +185,11 @@ class ApiService {
     return list.map((item) => OrderModel.fromJson(item)).toList();
   }
 
+  static Future<OrderModel> getOrder(int orderId) async {
+    final response = await ApiClient.get('${ApiConstants.orders}/$orderId');
+    return OrderModel.fromJson(response);
+  }
+
   static Future<OrderModel> updateOrderStatus(int orderId, String status) async {
     final response = await ApiClient.put(
       '${ApiConstants.orders}/$orderId/status',
@@ -216,5 +223,11 @@ class ApiService {
     final response = await ApiClient.get(ApiConstants.conversations);
     final List<dynamic> list = response as List<dynamic>;
     return list.map((item) => ConversationSummaryModel.fromJson(item)).toList();
+  }
+
+  // ================= UPLOADS =================
+  static Future<Map<String, dynamic>> uploadImage(List<int> bytes, String filename) async {
+    final response = await ApiClient.uploadFile(ApiConstants.uploadImage, bytes, filename);
+    return response as Map<String, dynamic>;
   }
 }
