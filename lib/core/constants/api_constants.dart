@@ -1,8 +1,8 @@
 import '../storage/storage_service.dart';
 
 class ApiConstants {
-  // Public Live API URL (accessible worldwide on Mobile Data, 4G, 5G, or any Wi-Fi via Cloudflare Tunnel)
-  static const String publicApiUrl = 'https://june-wellness-configuration-transmitted.trycloudflare.com';
+  // Public Live API URL deployed on Vercel
+  static const String publicApiUrl = 'https://agriconnect-sand-five.vercel.app';
 
   // Machine local Wi-Fi IP address fallback
   static const String defaultLocalIp = '192.168.137.203';
